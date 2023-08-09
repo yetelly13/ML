@@ -1,0 +1,30 @@
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+
+import matplotlib.pyplot as plt
+digits=load_digits()
+digits
+x,y=digits['data'],digits['target']
+print(x.shape)
+print(y.shape)
+X=digits.data
+Y=digits.target
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3, random_state = 1)
+from sklearn.tree import DecisionTreeClassifier,export_graphviz
+clf=DecisionTreeClassifier()
+clf=clf.fit(X_train,y_train)
+y_pred=clf.predict(X_test)
+y_test
+from sklearn import tree 
+tree.plot_tree(clf)
+from sklearn.tree import plot_tree
+plt.figure(figsize=(20,20))
+plot_tree(clf)
+plt.show()
+from sklearn.metrics import accuracy_score, confusion_matrix
+accuracy = accuracy_score(y_test, y_pred) 
+cm = confusion_matrix(y_test, y_pred) 
+print('Accuracy:', accuracy)
+print('Confusion matrix:\n', cm)
